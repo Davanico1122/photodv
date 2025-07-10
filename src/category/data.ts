@@ -115,33 +115,33 @@ export const getCountsForCategories = async () => {
     recents: recents[0]?.count
       ? { count: recents[0].count }
       : {},
-    years: years.reduce<Record<string, number>>((acc, year) => {
+    years: years.reduce((acc: Record<string, number>, year: { year: string; count: number }) => {
       acc[year.year] = year.count;
       return acc;
     }, {}),
-    cameras: cameras.reduce<Record<string, number>>((acc, camera) => {
+    cameras: cameras.reduce((acc: Record<string, number>, camera: { cameraKey: string; count: number }) => {
       acc[camera.cameraKey] = camera.count;
       return acc;
     }, {}),
-    lenses: lenses.reduce<Record<string, number>>((acc, lens) => {
+    lenses: lenses.reduce((acc: Record<string, number>, lens: { lens: any; count: number }) => {
       acc[createLensKey(lens.lens)] = lens.count;
       return acc;
     }, {}),
-    tags: tags.reduce<Record<string, number>>((acc, tag) => {
+    tags: tags.reduce((acc: Record<string, number>, tag: { tag: string; count: number }) => {
       acc[tag.tag] = tag.count;
       return acc;
     }, {}),
-    recipes: recipes.reduce<Record<string, number>>((acc, recipe) => {
+    recipes: recipes.reduce((acc: Record<string, number>, recipe: { recipe: string; count: number }) => {
       acc[recipe.recipe] = recipe.count;
       return acc;
     }, {}),
-    films: films.reduce<Record<string, number>>((acc, film) => {
+    films: films.reduce((acc: Record<string, number>, film: { film: string; count: number }) => {
       acc[film.film] = film.count;
       return acc;
     }, {}),
-    focalLengths: focalLengths.reduce<Record<string, number>>((acc, focalLength) => {
-      acc[focalLength.focal] = focalLength.count;
+    focalLengths: focalLengths.reduce((acc: Record<string, number>, focal: { focal: string; count: number }) => {
+      acc[focal.focal] = focal.count;
       return acc;
     }, {}),
   };
-}; // <== JANGAN LUPA INI
+};
