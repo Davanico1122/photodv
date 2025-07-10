@@ -112,36 +112,43 @@ export const getCountsForCategories = async () => {
   } = await getDataForCategories();
 
   return {
-    recents: recents[0]?.count
-      ? { count: recents[0].count }
-      : {} as Record<string, number>,
-    years: years.reduce((acc, year) => {
-      acc[year.year] = year.count;
-      return acc;
-    }, {} as Record<string, number>),
-    cameras: cameras.reduce((acc, camera) => {
-      acc[camera.cameraKey] = camera.count;
-      return acc;
-    }, {} as Record<string, number>),
-    lenses: lenses.reduce((acc, lens) => {
-      acc[createLensKey(lens.lens)] = lens.count;
-      return acc;
-    }, {} as Record<string, number>),
-    tags: tags.reduce((acc, tag) => {
-      acc[tag.tag] = tag.count;
-      return acc;
-    }, {} as Record<string, number>),
-    recipes: recipes.reduce((acc, recipe) => {
-      acc[recipe.recipe] = recipe.count;
-      return acc;
-    }, {} as Record<string, number>),
-    films: films.reduce((acc, film) => {
-      acc[film.film] = film.count;
-      return acc;
-    }, {} as Record<string, number>),
-    focalLengths: focalLengths.reduce((acc, focalLength) => {
-      acc[focalLength.focal] = focalLength.count;
-      return acc;
-    }, {} as Record<string, number>),
-  };
+  recents: recents[0]?.count
+    ? { count: recents[0].count }
+    : {},
+
+  years: years.reduce<Record<string, number>>((acc, year) => {
+    acc[year.year] = year.count;
+    return acc;
+  }, {}),
+
+  cameras: cameras.reduce<Record<string, number>>((acc, camera) => {
+    acc[camera.cameraKey] = camera.count;
+    return acc;
+  }, {}),
+
+  lenses: lenses.reduce<Record<string, number>>((acc, lens) => {
+    acc[createLensKey(lens.lens)] = lens.count;
+    return acc;
+  }, {}),
+
+  tags: tags.reduce<Record<string, number>>((acc, tag) => {
+    acc[tag.tag] = tag.count;
+    return acc;
+  }, {}),
+
+  recipes: recipes.reduce<Record<string, number>>((acc, recipe) => {
+    acc[recipe.recipe] = recipe.count;
+    return acc;
+  }, {}),
+
+  films: films.reduce<Record<string, number>>((acc, film) => {
+    acc[film.film] = film.count;
+    return acc;
+  }, {}),
+
+  focalLengths: focalLengths.reduce<Record<string, number>>((acc, focalLength) => {
+    acc[focalLength.focal] = focalLength.count;
+    return acc;
+  }, {}),
 };
+
